@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NexTool - Stylish Name Generator for PUBG, Free Fire, BGMI | Gaming Fonts</title>
+<meta name="description" content="Generate 100+ stylish, cool, badass gaming names for PUBG, Free Fire, BGMI, COD, Valorant. Copy with one click. Anti-ban symbols."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#00ff88","bg":"#0e0e0e","card":"#201f1f","card2":"#2a2a2a"}}}}</script>
+<style>body{font-family:Inter;background:#0e0e0e;color:#e5e2e1}</style>
+</head>
+<body>
+<header class="h-16 flex items-center justify-between px-6 max-w-[1280px] mx-auto"><div class="font-bold text-xl" style="font-family:Space Grotesk">NexTool</div><div class="text-xs opacity-60">🔥 #1 Gaming Name Generator v3.8</div></header>
+
+<main class="max-w-[1280px] mx-auto px-4 pb-20">
+<div class="text-center py-8">
+<h1 class="text-4xl md:text-6xl font-bold" style="font-family:Space Grotesk">Stylish Name <span class="text-[#00ff88]">For Gamers</span></h1>
+<p class="opacity-70 mt-3">Generate cool nicknames for PUBG, Free Fire, BGMI, COD & Valorant</p>
+<div class="max-w-3xl mx-auto mt-6 bg-[#201f1f] p-3 rounded-2xl flex gap-2">
+<input id="nick" class="flex-1 bg-[#1c1b1b] rounded-xl px-4 py-3 outline-none" placeholder="Type nickname... e.g. Haseeb" value="Haseeb"/>
+<button id="gen" class="px-8 py-3 rounded-xl bg-[#00ff88] text-black font-bold">Generate</button>
+</div>
+<div class="max-w-3xl mx-auto mt-4 bg-[#1c1b1b] rounded-xl p-3 flex justify-between items-center">
+<span class="text-xs opacity-50">LIVE PREVIEW</span><span id="live" class="font-bold text-xl text-[#00ff88]">꧁༒☬ Haseeb ☬༒꧂</span><button id="copyLive" class="px-3 py-1 rounded-lg bg-[#2a2a2a] text-sm">Copy</button>
+</div>
+</div>
+
+<div class="flex gap-2 overflow-x-auto pb-3" id="tabs"></div>
+<div class="flex justify-between py-2 text-xs opacity-60"><span id="count">20 Styles</span><button id="exportAll">Export All</button></div>
+<div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+<div class="text-center mt-6"><button id="loadMore" class="px-6 py-3 rounded-xl bg-[#201f1f]">Load More Styles (40+ Available)</button></div>
+
+<!-- YAHAN NAYI MALOOMAT LIKHAIN - SEO SECTION -->
+<section class="mt-16 bg-[#201f1f] rounded-2xl p-6 md:p-8">
+<h2 class="text-2xl font-bold mb-6" style="font-family:Space Grotesk">How to Use NexTool - Pro Guide</h2>
+<div class="grid md:grid-cols-2 gap-6 text-sm opacity-80 leading-relaxed">
+<div><b class="text-white">1. PUBG & BGMI Length Limits:</b><br/>Character limit is 14 bytes. Fancy symbols like ꧁ take 3 bytes. If rename fails, use simple wings ★ 彡 亗.<br/><br/>
+<b class="text-white">2. Free Fire Guild Tag:</b><br/>FF supports 12 characters. Use brackets 『TAG』 for clan tags, works on all servers without truncation.</div>
+<div><b class="text-white">3. VIP Tips for Gamers:</b><br/>
+• PUBG: Inventory > Rename Card > Paste > Confirm<br/>
+• Free Fire: Profile > Edit Icon > Paste (needs 390 Diamonds)<br/>
+• Cooldown: Most games have 7-day cooldown between name changes.<br/><br/>
+<b class="text-white">Yahan apni nayi maloomat likh sakte ho - ye Google ranking ke liye best jagah hai.</b></div>
+</div>
+</section>
+
+<section class="mt-6 text-center opacity-40 text-xs">Made by Engr Haseeb © 2026 NexTool | Engineered for esports</section>
+<div id="toast" class="fixed bottom-6 right-6 bg-[#2a2a2a] px-4 py-3 rounded-xl translate-y-20 opacity-0 transition-all"><span class="text-[#00ff88] font-bold text-xs">COPIED</span> <span id="toastText" class="ml-2"></span></div>
+</main>
+
+<script>
+const TEMPLATES=[
+{n:"VIP Clan",c:"clan",f:n=>`꧁༒☬ ${n} ☬༒꧂`},{n:"Pro Star",c:"pubg",f:n=>`★彡[${n}]彡★`},{n:"Emperor",c:"pubg",f:n=>`亗 ${n.toUpperCase()} 亗`},{n:"Thunder",c:"freefire",f:n=>`⚡${n.toUpperCase()}⚡`},{n:"Boss",c:"clan",f:n=>`『V』• ${n.toUpperCase()}™`},{n:"Aesthetic",c:"girls",f:n=>`✿ ${n} ✿`},{n:"Warrior",c:"pubg",f:n=>`☠︎☬${n}☬☠︎`},{n:"Royal",c:"bgmi",f:n=>`꧁༺${n.toUpperCase()}༻꧂`},{n:"Ninja",c:"freefire",f:n=>`乂${n}乂`},{n:"Sniper",c:"pubg",f:n=>`▄︻┻═┳一 ${n}`},{n:"Crown",c:"clan",f:n=>`♛ ${n.toUpperCase()} ♛`},{n:"Glitch",c:"bgmi",f:n=>`◤${n.toUpperCase()}◢`},{n:"Fire",c:"freefire",f:n=>`♨${n}♨`},{n:"God Tier",c:"clan",f:n=>`๖ۣۜZΞUS•${n}`},{n:"Legend",c:"bgmi",f:n=>`亗『LEGEND』${n}亗`},{n:"Rune",c:"symbols",f:n=>`᚛${n}᚜`},{n:"Lucky",c:"freefire",f:n=>`༒${n}777༒`},{n:"Bubble",c:"symbols",f:n=>`ⓐⓑ ${n}`},{n:"Dark",c:"pubg",f:n=>`ᴰᴬᴿᴷ•${n}`},{n:"Angel",c:"girls",f:n=>`꧁༒${n}༒꧂`},
+];
+const EXTRA=[{n:"Father",c:"clan",f:n=>`父 ${n.toUpperCase()} 父`},{n:"Bio",c:"pubg",f:n=>`☣${n}☣`},{n:"Matrix",c:"bgmi",f:n=>`░${n.toUpperCase()}░`},{n:"Heart",c:"girls",f:n=>`ღ${n}ღ`},{n:"Devil",c:"pubg",f:n=>`😈${n}😈`},{n:"King",c:"clan",f:n=>`👑${n}👑`},{n:"Toxic",c:"clan",f:n=>`☠ ${n} ☠`},{n:"Queen",c:"girls",f:n=>`👑 ${n} Queen 👑`}];
+let all=[...TEMPLATES];let active='all';
+const grid=document.getElementById('grid'),live=document.getElementById('live'),count=document.getElementById('count'),tabs=document.getElementById('tabs');
+const cats=[{id:'all',label:'All'},{id:'pubg',label:'PUBG'},{id:'freefire',label:'Free Fire'},{id:'bgmi',label:'BGMI'},{id:'clan',label:'VIP / Clan'},{id:'girls',label:'Girls'},{id:'symbols',label:'Symbols'}];
+function renderTabs(){tabs.innerHTML='';cats.forEach(c=>{const b=document.createElement('button');b.textContent=c.label;b.className=`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap ${active===c.id?'bg-[#00ff88] text-black':'bg-[#201f1f] text-white/60'}`;b.onclick=()=>{active=c.id;renderTabs();render();};tabs.appendChild(b);});}
+function render(){const name=document.getElementById('nick').value.trim()||'Gamer';const filtered=all.filter(t=>active==='all'||t.c===active);count.textContent=filtered.length+' Styles';grid.innerHTML='';filtered.forEach((t,i)=>{const s=t.f(name);const d=document.createElement('div');d.className='bg-[#201f1f] hover:bg-[#2a2a2a] rounded-xl p-4 flex flex-col';d.innerHTML=`<div class="flex justify-between text-[10px] opacity-40"><span>#${String(i+1).padStart(2,'0')}</span><span class="px-2 py-0.5 rounded bg-white/10">${t.c.toUpperCase()}</span></div><div class="py-3 font-bold text-lg truncate">${s}</div><div class="text-xs opacity-40">${t.n}</div><button class="mt-3 w-full py-2 rounded-lg bg-white/10 hover:bg-[#00ff88] hover:text-black font-bold text-sm">Copy</button>`;const btn=d.querySelector('button');btn.onclick=()=>{navigator.clipboard.writeText(s);toast(s);btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1200);};grid.appendChild(d);});if(filtered[0])live.textContent=filtered[0].f(name);}
+function toast(t){const el=document.getElementById('toast');document.getElementById('toastText').textContent=t;el.classList.remove('translate-y-20','opacity-0');setTimeout(()=>el.classList.add('translate-y-20','opacity-0'),2000);}
+document.getElementById('nick').addEventListener('input',render);
+document.getElementById('gen').addEventListener('click',render);
+document.getElementById('copyLive').addEventListener('click',()=>{navigator.clipboard.writeText(live.textContent);toast(live.textContent);});
+document.getElementById('loadMore').addEventListener('click',function(){all=[...all,...EXTRA];this.style.display='none';render();toast('Loaded 8+ more styles');});
+document.getElementById('exportAll').addEventListener('click',()=>{const name=document.getElementById('nick').value||'Gamer';const txt=all.filter(t=>active==='all'||t.c===active).map(t=>t.f(name)).join('\n');navigator.clipboard.writeText(txt);toast('All copied!');});
+renderTabs();render();
+</script>
+</body></html>
