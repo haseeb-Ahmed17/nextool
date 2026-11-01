@@ -1,0 +1,12 @@
+{
+  "name": "Ahmed Brothers - Customer Support Tool",
+  "short_name": "Ahmed Brothers",
+  "description": "Fast Custom Clearance Customer Support Tool - Ahmed Brothers",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0A2463",
+  "theme_color": "#0A2463",
+  "icons": [
+    {"src": "https://cdn-icons-png.flaticon.com/512/2942/2942076.png","sizes": "512x512","type": "image/png"}
+  ]
+}
