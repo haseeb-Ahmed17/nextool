@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart CGPA Calculator | Nextool</title>
+<link rel="manifest" href="manifest.json">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+*{font-family:'Inter',sans-serif;box-sizing:border-box}
+body{margin:0;background:#0f0f1a;color:white;min-height:100vh;padding:15px;display:flex;justify-content:center}
+.app{width:100%;max-width:420px;background:linear-gradient(180deg,#1a1a2e 0%,#0f0f1a 100%);border-radius:28px;padding:18px;border:1px solid #2a2a4a}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,255,255,0.06);border-radius:14px;backdrop-filter:blur(10px)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800}
+.c-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:20px;margin-top:20px;backdrop-filter:blur(20px);text-align:center}
+.c-card h1{font-size:64px;margin:10px 0}
+.badge{background:#6c5ce7;padding:6px 14px;border-radius:20px;font-size:13px;display:inline-block}
+input{width:100%;padding:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;color:white;font-size:18px;margin-top:15px;text-align:center}
+button.main{width:100%;padding:16px;background:linear-gradient(90deg,#5a67d8,#8b5cf6);border:none;border-radius:14px;color:white;font-weight:700;font-size:16px;margin-top:20px;cursor:pointer}
+.skills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px}
+.skill{background:rgba(255,255,255,0.06);border-radius:14px;padding:12px;text-align:center;font-size:12px}
+.install{background:linear-gradient(90deg,rgba(90,103,216,0.2),rgba(139,92,246,0.2));border:1px solid #5a67d8;border-radius:14px;padding:14px;margin-top:20px;display:flex;justify-content:space-between;align-items:center}
+.review{background:rgba(255,255,255,0.06);padding:12px;border-radius:12px;margin-top:10px;display:flex;gap:10px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header"><div class="logo">🎓 Smart CGPA</div><div>🔔 👤</div></div>
+
+<div class="c-card" id="displayCard">
+<span class="badge">Your CGPA</span>
+<h1 id="cgpaValue">--<span style="font-size:20px;color:#aaa">/4.00</span></h1>
+<span class="badge" id="statusBadge">Enter CGPA to Start</span>
+<input type="number" id="inputCGPA" step="0.01" max="4" placeholder="e.g. 3.25">
+<button class="main" onclick="calc()">✨ Calculate CGPA</button>
+<div id="tips" style="text-align:left;margin-top:15px;font-size:14px;line-height:1.6;display:none"></div>
+</div>
+
+<div class="skills">
+<div class="skill">💻<br><b>Programming</b></div>
+<div class="skill">📊<br><b>Data Analysis</b></div>
+<div class="skill">🎤<br><b>Public Speaking</b></div>
+</div>
+
+<div class="install">
+<div><b>Install the App</b><br><small>Faster, offline & secure</small></div>
+<button id="installBtn" style="padding:8px 14px;border-radius:8px;border:none;background:white;color:black;font-weight:bold;display:none">Install</button>
+</div>
+
+<div style="margin-top:20px"><b>Student Reviews</b><small style="float:right;color:#8b5cf6">128 reviews • 4.8★</small>
+<div class="review"><b>Aisha K.</b> - This calculator is so accurate and clean!</div>
+<div id="myReviews"></div>
+<input id="rName" placeholder="Your Name" style="font-size:14px;padding:10px"><textarea id="rText" placeholder="Your review..." style="width:100%;background:rgba(255,255,255,0.08);border:1px solid #333;border-radius:8px;color:white;padding:10px;margin-top:8px"></textarea><button onclick="addReview()" style="width:100%;margin-top:8px;padding:10px;background:#22c55e;border:none;border-radius:8px;color:white">Submit Review</button>
+</div>
+</div>
+
+<script>
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block';});
+document.getElementById('installBtn').addEventListener('click',()=>{if(deferredPrompt){deferredPrompt.prompt();}});
+
+function calc(){
+let cg=parseFloat(document.getElementById('inputCGPA').value);
+if(isNaN(cg)||cg>4){alert("Enter valid 0-4 CGPA");return;}
+document.getElementById('cgpaValue').innerHTML=`${cg.toFixed(2)}<span style="font-size:20px;color:#aaa">/4.00</span>`;
+let tips=document.getElementById('tips');tips.style.display='block';
+let badge=document.getElementById('statusBadge');
+if(cg<2.5){badge.innerText="Needs Improvement - Don't Worry!";badge.style.background="#ef4444";tips.innerHTML=`<b>Percentage:</b> ${(cg*25-10).toFixed(1)}%<br><br>🚀 <b>Action Plan:</b><ul><li>Study 2 hrs daily - Pomodoro</li><li>Focus on past papers (80% repeat)</li><li>Watch: Neso Academy</li><li>Office hours me teachers se milo</li></ul>`;}
+else if(cg<3.5){badge.innerText="Good - Now Build Skills!";badge.style.background="#f59e0b";tips.innerHTML=`<b>Percentage:</b> ${(cg*25-10).toFixed(1)}%<br><br>💡 <b>Skill Roadmap:</b><ul><li>Learn: Excel, Canva, Python Basics</li><li>Make LinkedIn profile</li><li>Apply on Rozee.pk / Internshala</li><li>Your CGPA is safe for jobs!</li></ul>`;}
+else{badge.innerText="Excellent! Top 10%";badge.style.background="#22c55e";tips.innerHTML=`<b>Percentage:</b> ${(cg*25-10).toFixed(1)}%<br><br>🌟 <b>Next Level:</b><ul><li>Eligible for HEC & Erasmus Scholarship</li><li>Start mentoring juniors</li><li>Prepare GRE/IELTS</li><li>🎉 <a href="#" style="color:#8b5cf6" onclick="alert('Certificate Downloaded!')">Download Star Certificate</a></li></ul>`;}
+}
+function addReview(){
+let n=document.getElementById('rName').value;let t=document.getElementById('rText').value;
+if(!n||!t){alert("Fill both");return;}
+document.getElementById('myReviews').innerHTML+=`<div class="review"><b>${n}</b> - ${t}</div>`;
+document.getElementById('rName').value='';document.getElementById('rText').value='';
+}
+</script>
+</body>
+</html>
