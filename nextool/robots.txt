@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://haseeb-ahmed17.github.io/nextool/nextool/cgpa-calculator/sitemap.xml
